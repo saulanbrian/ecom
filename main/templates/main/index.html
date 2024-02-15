@@ -1,1 +1,13 @@
-<h1>home</h1>
+{% extends 'base.html' %}
+{% block title %}
+  Home
+{% endblock %}
+{% block content %}
+  <ul>
+  {% for product in products %}
+    <li>{{ product }}</li>
+  {% empty %}
+    <p>no products yet</p>
+  {% endfor %}
+  </ul>
+{% endblock %}
