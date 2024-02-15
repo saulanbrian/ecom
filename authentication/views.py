@@ -10,7 +10,7 @@ from django.contrib.auth import login, authenticate, logout
 def LoginView(request):
   form = AuthenticationForm()
   if request.method == 'POST':
-    username = request.POST.get('usernae')
+    username = request.POST.get('username')
     password = request.POST.get('password')
     user = authenticate(
       request,
@@ -22,7 +22,8 @@ def LoginView(request):
     
   return render(
     request,
-    'authentication/login.html')
+    'authentication/login.html',
+    {'form':form})
     
 def RegisterView(request):
   form = RegistrationForm()
