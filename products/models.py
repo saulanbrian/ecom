@@ -18,8 +18,11 @@ class Product(models.Model):
     upload_to='images',
     null=True)
   
-  rating_ave = models.IntegerField(
-    null=True)
+  rating_ave = models.DecimalField(
+    null=True,
+    max_digits=2,
+    decimal_places=1,
+    editable=False)
   
   
   def __str__(self):
@@ -28,18 +31,22 @@ class Product(models.Model):
   def save(self,*args,**kwargs):
     reviews = self.reviews.all()
     ratings = 0
-    for review in reviews:
-      ratings += review.rating
-    self.rating_ave = ratings/len(ratings)
-    return save(*args,**kwargs)
+    if reviews:
+      for review in reviews:
+        ratings += review.rating
+      self.rating_ave = ratings/len(reviews)
+      return super().save(*args,**kwargs)
     
     
 class Review(models.Model):
   
   choices = [
-    (1,'⭐'),
-    (2,'⭐⭐'),
-  ]
+    (1, '⭐'),
+    (2, '⭐⭐'),
+    (3, '⭐⭐⭐'),
+    (4, '⭐⭐⭐⭐'),
+    (5, '⭐⭐⭐⭐⭐'),
+]
   
   user = models.ForeignKey(
     User,
