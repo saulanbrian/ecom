@@ -29,13 +29,14 @@ class Product(models.Model):
     return self.name
   
   def save(self,*args,**kwargs):
+    super().save(*args,**kwargs)
     reviews = self.reviews.all()
-    ratings = 0
     if reviews:
+      ratings = 0
       for review in reviews:
         ratings += review.rating
       self.rating_ave = ratings/len(reviews)
-      return super().save(*args,**kwargs)
+      super().save(*args,**kwargs)
     
     
 class Review(models.Model):

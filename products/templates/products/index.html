@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
   products
 {% endblock %}
+{% block links %}
+<link rel='stylesheet' href='{% static "products/styles.css" %}'>
+{% endblock %}
 
 {% block content %}
+  <div class='outer-container'>
   {% for product in products %}
     {% include 'products/product.html' with product=product %}
   {% endfor %}
+  </div>
 {% endblock %}

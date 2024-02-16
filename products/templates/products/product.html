@@ -6,8 +6,18 @@
   <div class='img-container'>
   <img src='{{ product.image.url }}'>
   </div>
-  <p>{{ product.name }}</p>
+  <h1 class='product-name'>{{ product.name }}</h1>
+  <div class='detail-container'>
   <p>${{ product.price }}</p>
+  {% if product.rating_ave %}
+  <p>
+    ({{ product.reviews.all|length }})
+    ⭐{{ product.rating_ave }}
+  </p>
+  {% else %}
+  <p class='empty'>no ratings yet</p>
+  {% endif %}
+  </div>
   <div class='button-container'>
     <button>Add to Cart</button>
     <button>Buy Now</button>
