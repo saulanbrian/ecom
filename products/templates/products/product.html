@@ -1,0 +1,15 @@
+{% load static %}
+
+<link rel='stylesheet' href='{% static "products/product.css" %}'>
+
+<div class='product-container'>
+  <div class='img-container'>
+  <img src='{{ product.image.url }}'>
+  </div>
+  <p>{{ product.name }}</p>
+  <p>${{ product.price }}</p>
+  <div class='button-container'>
+    <button>Add to Cart</button>
+    <button>Buy Now</button>
+  </div>
+</div>

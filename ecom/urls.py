@@ -26,8 +26,12 @@ urlpatterns = [
       'auth/',include(
         'authentication.urls')),
     path(
-      'home/',
+      '',
       include('main.urls')
+    ),
+    path(
+      'products/',
+      include('products.urls')
     )
 ] + static(
   settings.MEDIA_URL,

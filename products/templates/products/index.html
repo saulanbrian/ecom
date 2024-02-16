@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  products
+{% endblock %}
+
+{% block content %}
+  {% for product in products %}
+    {% include 'products/product.html' with product=product %}
+  {% endfor %}
+{% endblock %}

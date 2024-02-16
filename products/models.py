@@ -18,9 +18,20 @@ class Product(models.Model):
     upload_to='images',
     null=True)
   
+  rating_ave = models.IntegerField(
+    null=True)
+  
   
   def __str__(self):
     return self.name
+  
+  def save(self,*args,**kwargs):
+    reviews = self.reviews.all()
+    ratings = 0
+    for review in reviews:
+      ratings += review.rating
+    self.rating_ave = ratings/len(ratings)
+    return save(*args,**kwargs)
     
     
 class Review(models.Model):
