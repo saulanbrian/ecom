@@ -6,6 +6,7 @@
   <ul>
   {% for product in products %}
     <li>{{ product }}</li>
+    <img src='{{ product.image.url }}' >
   {% empty %}
     <p>no products yet</p>
   {% endfor %}

@@ -14,6 +14,10 @@ class Product(models.Model):
   
   price = models.IntegerField()
   
+  image = models.ImageField(
+    upload_to='images',
+    null=True)
+  
   
   def __str__(self):
     return self.name
