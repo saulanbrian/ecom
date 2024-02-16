@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'products.apps.ProductsConfig',
     'main.apps.MainConfig',
-    'shop.apps.ShopConfig'
+    'shop.apps.ShopConfig',
+    'custom_tags'
 ]
 
 MIDDLEWARE = [

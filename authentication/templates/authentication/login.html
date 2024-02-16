@@ -1,5 +1,8 @@
+{% load custom_tags %}
 <form method='post'>
   {% csrf_token %}
-  {{ form.as_p }}
+  {% for field in form %}
+    {{ field|add_class:'input_' }}
+  {% endfor %}
   <button>submit</button>
 </form>
