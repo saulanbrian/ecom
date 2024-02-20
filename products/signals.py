@@ -1,6 +1,8 @@
 from django.db.models.signals import post_save,pre_save,post_delete
 from django.dispatch import receiver
 
+from django.core.exceptions import PermissionDenied
+
 from products.models import Review, Product
 
 @receiver(post_save,sender=Review)
@@ -20,3 +22,15 @@ def trigger_product_save(
 def update_product_rating(
   sender,instance,**kwargs):
     instance.product.save()
+
+
+@receiver(pre_save,sender=Review)
+def check_permission(sender,
+instance,**kwrags):
+  user = instance.user.id
+  buyer = instance.product.orders.filter(buyer__id=user)
+  if not buyer:
+    print('can\'t leave a review')
+    raise PermissionDenied(
+      'can\'t leave a review')
+    

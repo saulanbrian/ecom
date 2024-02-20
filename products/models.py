@@ -27,6 +27,13 @@ class Product(models.Model):
   
   def __str__(self):
     return self.name
+   
+  def sold(self):
+    if self.orders:
+      return len(
+        [order for order in self.orders.all() if order.received ])
+    else:
+      print('hey')
   
   def save(self,*args,**kwargs):
     super().save(*args,**kwargs)
