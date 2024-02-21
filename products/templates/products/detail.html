@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+{% block links %}{% endblock %}
+{% block content %}
+  <div clas='preview-container'>
+  <img class='product-on-view' src='{{ product.image.url }}'>
+  <h1>{{ product.name }}</h1>
+  </div>
+  <form>
+    {{ form.rating|add_class:'rating' }}
+    {{ form.feedback|add_class:'feedback' }}
+  </form>
+{% endblock %}
+{% block scripts %}
+  <script>
+  $(document).ready(function(){
+    let rating = $('.rating')
+    let feedback = $('.feedback')
+    let id = $('.product-container').attr('id').val()
+    $.ajax(
+      {
+        url: '{% url "add_review" %}',
+        method: 'POST',
+        data:{
+          rating:rating,
+          feedback:feedback,
+          id:id
+        }
+        success:function(){
+          alert('success')
+        }
+        error:function(){
+          alert('error')
+        }
+      }
+      )
+  })
+  </script>
+{% endblock %}
