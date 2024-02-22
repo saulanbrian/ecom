@@ -15,21 +15,5 @@
   </div>
 {% endblock %}
 {% block scripts %}
-  <script>
-  $(document).ready(function(){
-  var buttons = $('.button-container').children()
-  $(buttons).each(function(){
-    $(this).first().click(function(){
-      
-      $(this).text('clicked')
-      
-      var id = $(this).parent().attr('class');
-      
-      alert(id)
-      
-     
-    })
-  })
-)
-  </script>
+
 {% endblock %}

@@ -1,26 +1,31 @@
 $(document).ready(function(){
-  var buttons = $('.button-container').children()
-  $(buttons).each(function(){
-    $(this).first().click(function(){
+  $('.button-container').each(function(){
+    $(this).children().first().click(function(){
+      $(this).text('added');
       
-      $(this).text('clicked')
-      
-      var id = $(this).parent().attr('class');
       
       $.ajax({
-        url:'{% url "add-to-cart" %}',
+        url:addToCartUrl,
         method:'POST',
+        headers:headers,
         data:{
-          product_id:id
+          any:'data'
         },
-        success:function(){
-          alert('success')
+        success:function(response){
+          alert(response.message);
         },
-        error:function(){
-          alert('failed')
+        error:function(xhr,error,status){
+          
+        console.log(error)
+          
+          var r = xhr.responseJSON;
+          
+          console.log(error)
+          console.log(r.message)
         }
-        }
-      })
-    })
-  })
-})
+        
+      });
+      
+    });
+  });
+});

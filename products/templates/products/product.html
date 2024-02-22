@@ -2,7 +2,7 @@
 
 <link rel='stylesheet' href='{% static "products/product.css" %}'>
 
-<div class='product-container'>
+<div id='{{ product.id }}' class='product-container product'>
   <div class='img-container'>
   <img src='{{ product.image.url }}'>
   </div>
@@ -21,8 +21,39 @@
   <p class='empty'>no ratings yet</p>
   {% endif %}
   </div>
-  <div id='{{ product.id }}' class='button-container'>
+  <div class='button-container'>
     <button>Add to Cart</button>
     <button>Buy Now</button>
   </div>
 </div>
+<script>
+$(document).ready(function(){
+  var product = $('.product[id="{{ product.id }}"]').find('.button-container').children().first()
+  
+  $(product).click(function(){
+    
+    $.ajax({
+      url: '{% url "add-to-cart" %}',
+      method:'POST',
+      headers:{
+        'X-CSRFToken':'{{ csrf_token }}'
+      },
+      data:{
+        'id_':'{{ product.id }}',
+        'any':'data'
+      },
+      success:function(response){
+        alert(response.message)
+      },
+      error:function(xhr,status,error){
+        
+        var r = xhr.responseJSON;
+        
+        alert(r.message)
+      }
+    });
+    
+  });
+});
+  
+</script>
