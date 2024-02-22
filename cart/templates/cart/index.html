@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}cart{% endblock %}
+{% block links %}
+<link rel='stylesheet' href='{% static "cart/index.css" %}'>
+{% endblock %}
+{% block content %}
+  {% for product in products %}
+  <div class='product'>
+    <h1 class='product-name'>
+    {{ product.name }}
+    </h1><hr>
+  </div>
+  {% endfor %}
+{% endblock %}
