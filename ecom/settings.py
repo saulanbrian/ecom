@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'shop.apps.ShopConfig',
     'custom_tags',
-    'order.apps.OrderConfig'
+    'order.apps.OrderConfig',
+    'cart.apps.CartConfig'
 ]
 
 MIDDLEWARE = [
