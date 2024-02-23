@@ -17,5 +17,16 @@ class Order(models.Model):
   received = models.BooleanField(
     default=False)
   
+  amount = models.IntegerField(default=1)
+  
+  price = models.IntegerField(
+    null=True,editable=False)
+  
   def confirm_receive(self):
     self.received = True
+  
+  def save(self,*args,**kwargs):
+    price = self.product.price
+    total = price * self.amount
+    self.price = total
+    super().save(*args,**kwargs)
