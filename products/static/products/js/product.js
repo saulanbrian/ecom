@@ -1,31 +1,32 @@
 $(document).ready(function(){
-  $('.button-container').each(function(){
+  var addToCart = $('.button-container');
+  
+  $(addToCart).each(function(){
     $(this).children().first().click(function(){
-      $(this).text('added');
-      
+      var p = $(this).closest('.product');
+      var product_id = $(p).attr('id');
       
       $.ajax({
         url:addToCartUrl,
         method:'POST',
-        headers:headers,
+        headers:{
+          'X-CSRFToken':csrfToken
+        },
         data:{
-          any:'data'
+          id_:product_id
         },
         success:function(response){
-          alert(response.message);
+          alert(response.message)
         },
-        error:function(xhr,error,status){
+        error:function(xhr,status){
+          var response = xhr.responseJSON;
           
-        console.log(error)
-          
-          var r = xhr.responseJSON;
-          
-          console.log(error)
-          console.log(r.message)
+          alert(response.message)
         }
-        
       });
       
     });
   });
+  
+  
 });

@@ -5,6 +5,7 @@
 {% endblock %}
 {% block links %}
 <link rel='stylesheet' href='{% static "products/styles.css" %}'>
+<link rel='stylesheet' href='{% static "products/product.css" %}'>
 {% endblock %}
 
 {% block content %}
@@ -15,5 +16,9 @@
   </div>
 {% endblock %}
 {% block scripts %}
-
+  <script>
+    const addToCartUrl = '{% url "add-to-cart" %}'
+    const csrfToken= '{{ csrf_token }}'
+  </script>
+  <script src='{% static "products/js/product.js" %}'></script>
 {% endblock %}

@@ -39,11 +39,3 @@ def add_to_cart(request):
       'message':'error: make sure you are logged'
     },status=403)
     
-#@login_required(login_url=reverse_lazy('login'))
-#def add_to_cart(request):
-  print(request.POST)
-  
-  return JsonResponse({
-    'success':True,
-    'message':'added'
-  })

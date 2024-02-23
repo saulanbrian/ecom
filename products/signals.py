@@ -28,9 +28,12 @@ def update_product_rating(
 def check_permission(sender,
 instance,**kwrags):
   user = instance.user.id
-  buyer = instance.product.orders.filter(buyer__id=user)
-  if not buyer:
+  orders = instance.product.orders.filter(buyer__id=user)
+  if not orders:
     print('can\'t leave a review')
     raise PermissionDenied(
       'can\'t leave a review')
-    
+  else:
+    product_id = instance.product.id
+    order = orders.filter(
+      product_id=product_id)
