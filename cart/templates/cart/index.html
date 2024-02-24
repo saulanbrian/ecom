@@ -3,6 +3,7 @@
 {% block title %}cart{% endblock %}
 {% block links %}
 <link rel='stylesheet' href='{% static "cart/index.css" %}'>
+<link rel='stylesheet' href='{% static "cart/footer.css" %}'>
 {% endblock %}
 {% block content %}
   {% for product in products %}
@@ -11,7 +12,7 @@
       <img src='{{ product.image.url }}'>
     </div>
     <div class='product-detail'>
-      <h1 class='product-name'>
+      <h1 class='product-name highlight'>
         {{ product.name }}
       </h1>
       <div class='subdetail'>
@@ -23,7 +24,7 @@
         {% else %}
         <p class='empty'>no ratings yet</p>
         {% endif %}
-        <p>
+        <p class='{% if not product.sold %}empty{% endif %}'>
           {{ product.sold }} sold
         </p>
         {% if product.reviews.all %}
@@ -35,14 +36,14 @@
           no reviews yet
         </p>
         {% endif %}
-        <h2 class='price'>
+        <h2 class='price highlight'>
           ${{ product.price }}
         </h2>
       </div>
       <div class='right-container'>
        <div class='amount-container'>
         <button>-</button>
-        <input value='1'>
+        <input type='number' min='0' value='1'>
         <button>+</button>
        </div>
        <div class='checkbox-container'>
@@ -52,5 +53,32 @@
       </div>
     </div>
   </div>
+  {% empty %}
+  <p class='empty'>
+    no products yet
+  </p>
   {% endfor %}
+<footer>
+  <div class='detail'>
+    <h1 class='highlight total-label'>
+      Total:
+    </h1>
+    <div class='highlight price-container'>
+       <h1 class='highlight currency'>
+         $
+       </h1>
+       <h1 class='highlight price'>
+         00
+       </h1>
+    </div>
+  </div>
+  <button>
+    <h1 class='highlight'>
+      CHECKOUT
+    </h1>
+  </button>
+</footer>
+{% endblock %}
+{% block scripts %}
+<script src='{% static "cart/js/cart.js" %}'></script>
 {% endblock %}

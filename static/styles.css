@@ -2,3 +2,30 @@
   color:gray;
   opacity:75%;
 }
+
+body{
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+button{
+  background-color:white;
+}
+
+button {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+.highlight {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+body{
+  padding:0px;
+}

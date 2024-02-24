@@ -19,6 +19,7 @@
   <script>
     const addToCartUrl = '{% url "add-to-cart" %}'
     const csrfToken= '{{ csrf_token }}'
+    const cartUrl = '{% url "cart" %}'
   </script>
   <script src='{% static "products/js/product.js" %}'></script>
 {% endblock %}

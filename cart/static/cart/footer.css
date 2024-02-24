@@ -1,0 +1,75 @@
+footer{
+  height:200px;
+  width:100%;
+  position:fixed;
+  bottom:0px;
+  margin:0;
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  border-top:1px solid black;
+}
+
+footer > button{
+  height:100%;
+  border:1px solid black;
+}
+
+footer button:active{
+  background-color:black;
+  color:white;
+}
+
+
+footer .detail{
+  display:flex;
+  margin-left:20px;
+  align-items:center;
+  flex-direction:column;
+}
+
+.detail .total-label{
+  flex:1;
+  text-align:left;
+  background-color:;
+  width:100%;
+  padding-left:20px;
+  margin:0;
+  padding-top:5px;
+}
+
+.detail .price-container{
+  flex:2;
+  width:100%;
+  display:flex;
+  background-color:;
+  flex-direction:row;
+}
+
+.currency{
+  background-color:;
+  padding-left:30px;
+  padding-bottom:20px;
+  padding-top:11px;
+  height:100%;
+  margin:0;
+}
+
+.price-container .price{
+  font-size:50px;
+  background-color:;
+  height:100%;
+  margin-left:2px;
+  width:100%;
+  margin:0;
+  display:flex;
+  font-size:75px;
+  padding-left:2px;
+}
+
+footer button {
+  padding:0;
+}
+
+footer button h1{
+  font-size:50px;
+}

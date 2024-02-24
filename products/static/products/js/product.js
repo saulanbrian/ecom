@@ -2,7 +2,9 @@ $(document).ready(function(){
   var addToCart = $('.button-container');
   
   $(addToCart).each(function(){
-    $(this).children().first().click(function(){
+    var button =  $(this).children().filter('.add-button').first();
+    
+    $(button).one('click',function(){
       var p = $(this).closest('.product');
       var product_id = $(p).attr('id');
       
@@ -17,6 +19,11 @@ $(document).ready(function(){
         },
         success:function(response){
           alert(response.message)
+          $(button).text('Go to Cart')
+          $(button).removeClass('add-button')
+          $(button).attr({
+            'onclick':"location.href='" + cartUrl + "'",
+          })
         },
         error:function(xhr,status){
           var response = xhr.responseJSON;

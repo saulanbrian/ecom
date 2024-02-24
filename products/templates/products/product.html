@@ -4,7 +4,7 @@
   <div class='img-container'>
   <img src='{{ product.image.url }}'>
   </div>
-  <h1 class='product-name'>{{ product.name }}</h1>
+  <h1 class='product-name highlight'>{{ product.name }}</h1>
   <div class='detail-container'>
   <p>${{ product.price }}</p>
   <p>
@@ -20,8 +20,11 @@
   {% endif %}
   </div>
   <div class='button-container'>
-    <button>Add to Cart</button>
+    {% if product in user.cart.products.all %}
+    <button onclick='location.href="{% url 'cart' %}"'>Go to Cart</button>
+    {% else %}
+    <button class='add-button'>Add to Cart</button>
+    {% endif %}
     <button>Buy Now</button>
   </div>
 </div>
-
