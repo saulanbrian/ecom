@@ -6,10 +6,51 @@
 {% endblock %}
 {% block content %}
   {% for product in products %}
-  <div class='product'>
-    <h1 class='product-name'>
-    {{ product.name }}
-    </h1><hr>
+  <div class='cart-product'>
+    <div class='image-container'>
+      <img src='{{ product.image.url }}'>
+    </div>
+    <div class='product-detail'>
+      <h1 class='product-name'>
+        {{ product.name }}
+      </h1>
+      <div class='subdetail'>
+      <div class='details'>
+        {% if product.rating_ave %}
+        <p>
+        ⭐{{ product.rating_ave }}
+        </p>
+        {% else %}
+        <p class='empty'>no ratings yet</p>
+        {% endif %}
+        <p>
+          {{ product.sold }} sold
+        </p>
+        {% if product.reviews.all %}
+        <p>
+          {{ product.reviews.all|length }} review(s)
+        </p>
+        {% else %}
+        <p class='empty'>
+          no reviews yet
+        </p>
+        {% endif %}
+        <h2 class='price'>
+          ${{ product.price }}
+        </h2>
+      </div>
+      <div class='right-container'>
+       <div class='amount-container'>
+        <button>-</button>
+        <input value='1'>
+        <button>+</button>
+       </div>
+       <div class='checkbox-container'>
+         <input type='checkbox'>
+       </div>
+      </div>
+      </div>
+    </div>
   </div>
   {% endfor %}
 {% endblock %}

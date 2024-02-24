@@ -33,7 +33,4 @@ instance,**kwrags):
     print('can\'t leave a review')
     raise PermissionDenied(
       'can\'t leave a review')
-  else:
-    product_id = instance.product.id
-    order = orders.filter(
-      product_id=product_id)
+  

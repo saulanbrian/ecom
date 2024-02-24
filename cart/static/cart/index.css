@@ -1,4 +1,119 @@
+.cart-product{
+  display:flex;
+  flex-wrap:nowrap;
+  flex-direction:row;
+  margin-bottom:10px;
+  border:3px solid black;
+  border-radius:30px;
+  box-shadow:4px 4px 8px black;
+  justify-content:space-evenly;
+  padding:0 15px;
+  align-items:center;
+}
+
+.image-container{
+  min-width:250px;
+  min-height:250px;
+  max-height:250px;
+  max-width:250px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid black;
+  border-radius:20px;
+}
+
+.image-container > img{
+  max-height:280px;
+  max-width:280px;
+}
+
 .product-name{
+  text-align:;
+}
+
+.cart-product > * {
+  flex:1;
+}
+
+.cart-product > .product-detail{
+  padding-left:5%;
+  display:grid;
+  grid-template-rows:1fr 3fr ;
+}
+
+.product-name{
+  display:flex;
+  align-items:center;
+}
+
+.subdetail{
+  display:flex;
+  flex-direction:row;
+}
+
+.subdetail .right-container{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  flex-wrap:nowrap;
+  width:100%;
+  padding-bottom:40px;
+}
+
+.amount-container{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+}
+
+.amount-container *{
+  max-width:50px;
+  height:50px;
+}
+
+.right-container *{
+  flex:1;
+}
+
+.amount-container > input{
   text-align:center;
-  color:blue;
+}
+
+input[type='checkbox']{
+  height:30px;
+  width:30px;
+}
+
+.checkbox-container{
+  display:flex;
+  justify-content:center;
+}
+
+.product-name{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.subdetail .details{
+  width:400px;
+}
+
+
+.amount-container button{
+  color:black;
+  background-color:white;
+  border-radius:2px;
+  font-size:20px;
+}
+
+.amount-container button:active{
+  color:white;
+  background-color:black;
+}
+
+.price{
+  font-size:40px;
 }
