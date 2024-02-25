@@ -27,12 +27,17 @@ $(document).ready(function(){
 
   $('.checkbox-container input').each(function(){
     $(this).change(function(){
-      var total = parseInt($('.price-container .price').text())
+      var total_tag = $('.price-container .total-price')
+      var total = parseInt($(total_tag).text())
       
       if ($(this).is(':checked')){
-        alert('checked');
+        var product_price = parseInt($(this).closest('.right-container').siblings('.details').find('.price').text().split('$')[1]);
+       
+        var amount = parseInt($(this).parent('.checkbox-container').siblings('.amount-container').children().filter('input').val());
+        
+        $(total_tag).text(total+(product_price*amount))
       }else{
-        alert('unchecked');
+        $(total_tag).text(total-1)
       }
       
     });
