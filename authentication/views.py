@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.urls import reverse_lazy
 
-from .forms import RegistrationForm
+from .forms import RegistrationForm,PasswordVerificationForm
 from django.contrib.auth.forms import AuthenticationForm
 
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+from django.views import View
+
 def LoginView(request):
   form = AuthenticationForm()
   if request.method == 'POST':
@@ -39,3 +42,16 @@ def RegisterView(request):
     request,
     'authentication/signup.html',
     {'form':form})
+    
+@login_required(login_url=reverse_lazy('login'))
+def verify_identity(request):
+  form = PasswordVerificationForm()
+  if request.method=='POST':
+    user = authenticate(
+      username=request.user.username,
+      password=request.POST.get('password'))
+    if user:
+      return render(request,'authentication/success.html')
+    form = PasswordVerificationForm(request.POST)
+  return render(request,'authentication/verification.html',{'form':form})
+
