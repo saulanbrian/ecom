@@ -12,6 +12,7 @@ $(document).ready(function(){
       var current_val = parseInt($(input).val())
       
       $(input).val(current_val+1);
+      $(input).trigger('change')
     });
     $(minus).click(function(){
       
@@ -20,28 +21,55 @@ $(document).ready(function(){
       
       if(current_val>=2){
         $(input).val(current_val-1)
-      }
-      
-    });
-  });
-
-  $('.checkbox-container input').each(function(){
-    $(this).change(function(){
-      var total_tag = $('.price-container .total-price')
-      var total = parseInt($(total_tag).text())
-      
-      if ($(this).is(':checked')){
-        var product_price = parseInt($(this).closest('.right-container').siblings('.details').find('.price').text().split('$')[1]);
-       
-        var amount = parseInt($(this).parent('.checkbox-container').siblings('.amount-container').children().filter('input').val());
-        
-        $(total_tag).text(total+(product_price*amount))
-      }else{
-        $(total_tag).text(total-1)
+        $(input).trigger('change')
       }
       
     });
   });
   
-
+  
+  var total_tag = $('footer').find('.total-price')
+  var overall_total = 0
+  
+  
+  function calculateTotal(){
+    $('.cart-product').each(function(){
+      let checkbox = $(this).find('input[type="checkbox"]')
+   
+      var price = parseInt($(this).find('.product-price').text().split('$')[1])
+      var amount = parseInt($(this).find('.amount-container input').val())
+      
+      if($(checkbox).is(':checked')){
+        overall_total = (overall_total+(price*amount))
+      }
+      
+    });
+  }
+  
+  function resetTotal(){
+    overall_total = 0
+  }
+  
+  function updateTotal(){
+    $(total_tag).text(overall_total)
+  }
+  
+  
+  $('input[type="checkbox"]').each(function(){
+    $(this).change(function(){
+      resetTotal()
+      calculateTotal()
+      updateTotal()
+    });
+  });
+  
+  $('.amount-container input').each(function(){
+    $(this).change(function(){
+      resetTotal()
+      calculateTotal()
+      updateTotal()
+    });
+  });
+  
 });
+ 
