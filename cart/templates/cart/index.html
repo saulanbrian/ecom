@@ -7,7 +7,7 @@
 {% endblock %}
 {% block content %}
   {% for product in products %}
-  <div class='cart-product'>
+  <div id='{{ product.id }}' class='cart-product'>
     <div class='image-container'>
       <img src='{{ product.image.url }}'>
     </div>
@@ -58,27 +58,14 @@
     no products yet
   </p>
   {% endfor %}
-<footer>
-  <div class='detail'>
-    <h1 class='highlight total-label'>
-      Total:
-    </h1>
-    <div class='highlight price-container'>
-       <h1 class='highlight currency'>
-         $
-       </h1>
-       <h1 class='highlight total-price'>
-         0
-       </h1>
-    </div>
-  </div>
-  <button>
-    <h1 class='highlight'>
-      CHECKOUT
-    </h1>
-  </button>
-</footer>
+{% include 'cart/footer.html' %}
 {% endblock %}
 {% block scripts %}
+<script>
+  const orderPreviewUrl = '{% url "pre-order" %}';
+  const csrfToken = '{{ csrf_token }}'
+  var toCheckOut = [];
+</script>
 <script src='{% static "cart/js/cart.js" %}'></script>
+<script src='{% static "cart/js/footer.js" %}'></script>
 {% endblock %}

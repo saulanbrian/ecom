@@ -25,8 +25,7 @@ class Order(models.Model):
   def confirm_receive(self):
     self.received = True
   
-  def save(self,*args,**kwargs):
+  def compute_total(self):
     price = self.product.price
     total = price * self.amount
-    self.price = total
-    super().save(*args,**kwargs)
+    self.price = total 

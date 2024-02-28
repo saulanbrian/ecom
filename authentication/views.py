@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 
@@ -51,7 +51,8 @@ def verify_identity(request):
       username=request.user.username,
       password=request.POST.get('password'))
     if user:
-      return render(request,'authentication/success.html')
+      redirect_url = request.session.get('redirect_url')
+      return redirect(redirect_url)
     form = PasswordVerificationForm(request.POST)
   return render(request,'authentication/verification.html',{'form':form})
 

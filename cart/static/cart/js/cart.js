@@ -34,6 +34,9 @@ $(document).ready(function(){
   
   function calculateTotal(){
     $('.cart-product').each(function(){
+      
+      let productId = $(this).attr('id')
+      
       let checkbox = $(this).find('input[type="checkbox"]')
    
       var price = parseInt($(this).find('.product-price').text().split('$')[1])
@@ -41,6 +44,10 @@ $(document).ready(function(){
       
       if($(checkbox).is(':checked')){
         overall_total = (overall_total+(price*amount))
+        toCheckOut.push({
+          product_id:productId,
+          amount:amount
+        })
       }
       
     });

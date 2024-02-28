@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+  {% for order in orders %}
+    <h1>{{ order.product.name }}</h1>
+  {% endfor %}
+  <form method='POST'>
+    <button>confirm</button>
+  </form>
+{% endblock %}
