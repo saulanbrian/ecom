@@ -29,6 +29,7 @@ def pre_order(request):
   if request.method=='POST':
     body = request.body.decode('utf-8')
     data = json.loads(body)
+    request.session.pop('products')
     request.session['products'] = data['products']
     return JsonResponse({
       'message':'success',
@@ -37,6 +38,9 @@ def pre_order(request):
 
 @login_required(login_url=loginurl)
 def preview(request):
+  if request.method=='POST':
+    request.session.pop('products',None)
+    return HttpResponse('success')
   products = request.session.get('products')
 
   orders = []

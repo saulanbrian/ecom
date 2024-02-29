@@ -4,10 +4,9 @@ $(document).ready(function (){
   
   var checkout = 'CHECKOUT'
   //for some reason we can compare the "CHECKOUT" directly to the btnMsg (btnMsg=='CHECKOUT')
-  
+
   $(button).click(function (){
     if(btnMsg==checkout){
-      
       $.ajax({
         url:orderPreviewUrl,
         method:'POST',
@@ -19,11 +18,14 @@ $(document).ready(function (){
           'products':toCheckOut
         }),
         success:function(response){
+          toCheckOut = []
+          calculateTotal()
           window.location.href=response.redirect_url
         },
         error:function(xhr,status){
           alert('error')
           toCheckOut = []
+          calculateTotal()
         }
       });
     }else{

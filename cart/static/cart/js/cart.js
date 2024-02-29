@@ -1,4 +1,4 @@
-$(document).ready(function(){
+
   
   var buttons = $('.amount-container')
   
@@ -55,6 +55,7 @@ $(document).ready(function(){
   
   function resetTotal(){
     overall_total = 0
+    toCheckOut = []
   }
   
   function updateTotal(){
@@ -78,5 +79,4 @@ $(document).ready(function(){
     });
   });
   
-});
  
