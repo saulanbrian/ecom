@@ -46,13 +46,8 @@ def RegisterView(request):
 @login_required(login_url=reverse_lazy('login'))
 def verify_identity(request):
   form = PasswordVerificationForm()
-  if request.method=='POST':
-    user = authenticate(
-      username=request.user.username,
-      password=request.POST.get('password'))
-    if user:
-      redirect_url = request.session.get('redirect_url')
-      return redirect(redirect_url)
-    form = PasswordVerificationForm(request.POST)
-  return render(request,'authentication/verification.html',{'form':form})
+  redirect_url = request.session.get('redirect_url',None)
+  request.session.pop('redirect_url')
+  return render(request,'authentication/verification.html',{
+    'form':form,'redirect_url':redirect_url})
 
