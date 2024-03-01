@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from products.models import Product
 
+from django.utils import timezone
+
 class Order(models.Model):
   buyer = models.ForeignKey(
     User,
@@ -22,7 +24,12 @@ class Order(models.Model):
   price = models.IntegerField(
     null=True,editable=False)
   
+  date_placed = models.DateTimeField(auto_now_add=True)
+  
+  date_received = models.DateTimeField(null=True)
+  
   def confirm_receive(self):
+    self.data_received = timezone.now()
     self.received = True
   
   def compute_total(self):

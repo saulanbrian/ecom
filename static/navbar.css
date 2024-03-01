@@ -1,0 +1,34 @@
+.nav-bar{
+  height:150px;
+  width:100%;
+  margin:0;
+  display:flex;
+  position:fixed;
+  bottom:0px;
+  background-color:white;
+  border-top:2px solid black;
+}
+
+.nav-bar > *{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+#current-route{
+  background-color:black;
+  color:white;
+}
+
+.nav-btn{
+}
+
+.nav-btn:active{
+  color:white;
+  background-color:black;
+}
+
+.nav-bar p{
+  font-size:30px;
+}

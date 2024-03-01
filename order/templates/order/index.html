@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block links %}
+<link rel='stylesheet' href='{% static "navbar.css" %}'>
+{% endblock %}
+{% block content %}
+  {% for order in orders %}
+    <h1>{{ order.product.name }}</h1>
+  {% endfor %}
+  {% include 'navbar.html' with current_route='orders' %}
+{% endblock %}
+{% block scripts %}
+<script src='{% static "js/navbar.js" %}'></script>
+{% endblock %}

@@ -6,6 +6,7 @@
 {% block links %}
 <link rel='stylesheet' href='{% static "products/styles.css" %}'>
 <link rel='stylesheet' href='{% static "products/product.css" %}'>
+<link rel='stylesheet' href='{% static "navbar.css" %}'>
 {% endblock %}
 
 {% block content %}
@@ -14,6 +15,7 @@
     {% include 'products/product.html' with product=product %}
   {% endfor %}
   </div>
+  {% include 'navbar.html' with current_route='products' %}
 {% endblock %}
 {% block scripts %}
   <script>
@@ -22,4 +24,5 @@
     const cartUrl = '{% url "cart" %}'
   </script>
   <script src='{% static "products/js/product.js" %}'></script>
+  <script src='{% static "js/navbar.js" %}'></script>
 {% endblock %}

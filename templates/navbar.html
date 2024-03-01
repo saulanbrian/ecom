@@ -1,0 +1,14 @@
+<div id='{{ current_route }}' class='nav-bar'> 
+  <div id='products' class='nav-btn' onclick="window.location.href='{% url 'products' %}'">
+    <p>products</p>
+  </div>
+  <div id='cart' class='nav-btn' onclick="window.location.href='{% url 'cart' %}'">
+    <p>cart</p>
+  </div>
+  <div id='orders' class='nav-btn' onclick="window.location.href='{% url 'orders' %}'">
+    <p>orders</p>
+  </div>
+  <div id='profile' class='nav-btn' onclick="window.location.href='#'">
+    <p>me</p>
+  </div>
+</div>
