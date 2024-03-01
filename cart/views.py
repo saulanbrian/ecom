@@ -20,10 +20,7 @@ def cart(request):
   user_id = request.user.id
   products = Cart.objects.get(
     user__id=user_id).products.all()
-  return render(
-    request,
-    'cart/index.html',
-    {'products':products})
+  return render(request,'cart/index.html',{'products':products})
  
 @login_required(login_url=loginurl)
 def pre_order(request):
@@ -52,7 +49,7 @@ def preview(request):
     orders.clear()
     return HttpResponse('order placed')
   elif products:
-    request.session.pop('products')
+    orders.clear()
     for product_ in products:
       order = Order(
         buyer=request.user,
@@ -66,4 +63,6 @@ def preview(request):
 def order_confirmed(request):
   if request.method=='POST':
     request.session['order_confirmed'] = True
+    request.session.pop('redirect_url')
+    request.session.pop('products')
     return redirect(reverse('preview-orders'))

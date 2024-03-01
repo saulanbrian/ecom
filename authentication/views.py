@@ -47,7 +47,7 @@ def RegisterView(request):
 def verify_identity(request):
   form = PasswordVerificationForm()
   redirect_url = request.session.get('redirect_url',None)
-  request.session.pop('redirect_url')
-  return render(request,'authentication/verification.html',{
+  if redirect_url:
+    return render(request,'authentication/verification.html',{
     'form':form,'redirect_url':redirect_url})
-
+  return HttpResponse('404')

@@ -7,7 +7,8 @@ $(document).ready(function (){
 
   $(button).click(function (){
     if(btnMsg==checkout){
-      $.ajax({
+      if(toCheckOut.length>=1){
+        $.ajax({
         url:orderPreviewUrl,
         method:'POST',
         headers:{
@@ -28,6 +29,7 @@ $(document).ready(function (){
           calculateTotal()
         }
       });
+      }
     }else{
       alert(btnMsg)
     }

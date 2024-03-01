@@ -1,0 +1,35 @@
+.password-input{
+  width:80%;
+  margin:10px 10%;
+  border:2px solid black;
+  border-radius:30px;
+  height:50px;
+  font-size:25px;
+  text-align:center;
+}
+
+button{
+  width:80%;
+  height:50px;
+  margin:10px 10%;
+  border:2px solid black;
+  border-radius:30px;
+  font-size:25px;
+}
+
+button:hover{
+  background-color:black;
+  color:white;
+}
+
+form{
+  width:50%;
+  height:400px;
+  margin:10% 25%;
+  border:3px solid black;
+  border-radius:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
