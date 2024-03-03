@@ -1,5 +1,5 @@
 .nav-bar{
-  height:150px;
+  height:100px;
   width:100%;
   margin:0;
   display:flex;
@@ -21,14 +21,18 @@
   color:white;
 }
 
-.nav-btn{
-}
-
-.nav-btn:active{
+.nav-btn:hover{
   color:white;
   background-color:black;
+  cursor: pointer;
 }
 
 .nav-bar p{
   font-size:30px;
+}
+
+@media(max-width:1000px){
+  .nav-bar p{
+    font-size: 20px;
+  }
 }

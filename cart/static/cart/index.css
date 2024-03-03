@@ -109,9 +109,10 @@ input[type='checkbox']{
   font-size:20px;
 }
 
-.amount-container button:active{
+.amount-container button:hover{
   color:white;
   background-color:black;
+  cursor: pointer;
 }
 
 .price{

@@ -6,6 +6,7 @@
 <link rel='stylesheet' href='{% static "cart/footer.css" %}'>
 {% endblock %}
 {% block content %}
+  <input type="hidden" value="{{ csrf_token }}" id="csrf-token" >
   {% for product in products %}
   <div id='{{ product.id }}' class='cart-product'>
     <div class='image-container'>
@@ -15,7 +16,7 @@
       <h1 class='product-name highlight'>
         {{ product.name }}
       </h1>
-      <div class='subdetail'>
+      <div class='subdetail'> 
       <div class='details'>
         {% if product.rating_ave %}
         <p>
@@ -63,7 +64,6 @@
 {% block scripts %}
 <script>
   const orderPreviewUrl = '{% url "pre-order" %}';
-  const csrfToken = '{{ csrf_token }}'
   var toCheckOut = [];
 </script>
 <script src='{% static "cart/js/cart.js" %}'></script>

@@ -35,4 +35,4 @@ class Order(models.Model):
   def compute_total(self):
     price = self.product.price
     total = price * self.amount
-    self.price = total 
+    self.price = total  

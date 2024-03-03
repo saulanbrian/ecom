@@ -6,18 +6,13 @@
   </div>
   <h1 class='product-name highlight'>{{ product.name }}</h1>
   <div class='detail-container'>
-  <p>${{ product.price }}</p>
-  <p>
-    {{ product.sold }} sold
-  </p>
-  {% if product.rating_ave %}
-  <p>
-    ({{ product.reviews.all|length }})
-    ⭐{{ product.rating_ave }}
-  </p>
-  {% else %}
-  <p class='empty'>no ratings yet</p>
-  {% endif %}
+    <p>${{ product.price }}</p>
+    <p>{{ product.sold }} sold</p>
+      {% if product.rating_ave %}
+        <p class="'rating">({{ product.reviews.all|length }})⭐{{ product.rating_ave }}</p>
+      {% else %}
+        <p class='empty rating'>no ratings yet</p>
+      {% endif %}
   </div>
   <div class='button-container'>
     {% if product in user.cart.products.all %}

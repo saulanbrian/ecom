@@ -6,8 +6,16 @@
   justify-content:center;
   align-items:center;
   padding-bottom:200px;
+  margin-top:10px;
 }
 
+@media (min-width:700px) {
+  .outer-container{
+    width:80%;
+    margin:0 10%;
+    margin-top:15px;
+  }
+}
 
 
 

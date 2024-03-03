@@ -7,7 +7,7 @@
 <link rel='stylesheet' href='{% static "authentication/verification.css" %}'>
 {% endblock %}
 {% block content %}
-  <form method='POST' action='{{ redirect_url }}'>
+  <form method='POST'>
     {% csrf_token %}
     <div style='text-align:center;'>
       <h1>ONE LAST STEP!</h1>

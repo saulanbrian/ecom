@@ -5,30 +5,33 @@ $(document).ready(function (){
   var checkout = 'CHECKOUT'
   //for some reason we can compare the "CHECKOUT" directly to the btnMsg (btnMsg=='CHECKOUT')
 
-  $(button).click(function (){
+  $(button).one('click',function (){
+    resetTotal()
+    calculateTotal()
+    alert(toCheckOut)
+
     if(btnMsg==checkout){
-      if(toCheckOut.length>=1){
+
+      var csrfToken = $('#csrf-token').val()
+      
+      if( toCheckOut.length>=1 ){
         $.ajax({
-        url:orderPreviewUrl,
-        method:'POST',
-        headers:{
-          'X-CSRFToken':csrfToken,
-          'Content-Type':'application/json'
-        },
-        data:JSON.stringify({
-          'products':toCheckOut
-        }),
-        success:function(response){
-          toCheckOut = []
-          calculateTotal()
-          window.location.href=response.redirect_url
-        },
-        error:function(xhr,status){
-          alert('error')
-          toCheckOut = []
-          calculateTotal()
-        }
-      });
+          url:orderPreviewUrl,
+          method:'POST',
+          headers:{
+            'X-CSRFToken':csrfToken,
+            'Content-Type':'application/json'
+          },
+          data:JSON.stringify({
+            'products':toCheckOut
+          }),
+          success:function(response){
+            window.location.href=response.redirect_url
+          },
+          error:function(xhr,status){
+          }
+        });
+
       }
     }else{
       alert(btnMsg)

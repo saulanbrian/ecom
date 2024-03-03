@@ -1,12 +1,14 @@
 footer{
-  height:200px;
+  height:100px;
   width:100%;
   position:fixed;
-  bottom:0px;
+  bottom:0;
   margin:0;
   display:grid;
   grid-template-columns:2fr 1fr;
   border-top:1px solid black;
+  background-color: white;
+  padding-bottom: 25px;
 }
 
 footer > button{
@@ -14,7 +16,8 @@ footer > button{
   border:1px solid black;
 }
 
-footer button:active{
+footer button:hover{
+  cursor: pointer;
   background-color:black;
   color:white;
 }
@@ -30,7 +33,6 @@ footer .detail{
 .detail .total-label{
   flex:1;
   text-align:left;
-  background-color:;
   width:100%;
   padding-left:20px;
   margin:0;
@@ -41,12 +43,11 @@ footer .detail{
   flex:2;
   width:100%;
   display:flex;
-  background-color:;
   flex-direction:row;
+  padding-left: 30px;
 }
 
 .currency{
-  background-color:;
   padding-left:30px;
   padding-bottom:20px;
   padding-top:11px;
@@ -56,7 +57,6 @@ footer .detail{
 
 .price-container .total-price{
   font-size:50px;
-  background-color:;
   height:100%;
   margin-left:2px;
   width:100%;

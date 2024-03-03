@@ -1,64 +1,70 @@
 .product-container{
-  height:600px;
-  width:400px;
-  background-color:white;
+  height:440px;
+  width:280px;
   border:2px solid black;
-  border-radius:5px;
-  padding:7px;
-  display:flex;
-  justify-content:center;
-  flex-direction: column;
+  border-radius:10px;
 }
 
-.product-container p{
-  text-align:center;
-  font-size:20px;
-}
-
-.button-container{
-  display:flex;
-  gap:4px;
-}
-
-.button-container button{
+.product-container .img-container{
+  height:250px;
+  width:90%;
+  margin:5px 5%;
   border:2px solid black;
-  border-radius:3px;
-  width:50%;
-  padding:10px;
-  font-size:20px;
+  border-radius: 10px;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
 }
 
-.product-container img{
-  max-height:600px;
-  overflow:hidden;
+.product-container .img-container img{
+  max-height:250px;
 }
 
-.img-container{
-  max-width:580px;
-  min-height:410px;
-  max-height:410px;
-  overflow:hidden;
-  border:2px solid black;
-  border-radius:3px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.product-container .product-name{
+  margin:5%;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-.product-container button:active{
+.product-container .detail-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap:nowrap;
+  flex-grow:0;
+  max-height:53px;
+  padding:0 5%;
+}
+
+.product-container .detail-container > *{
+  flex:1;
+}
+
+.product-container .detail-container .rating{
+  display: flex;
+  flex-shrink: 1;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-container .button-container{
+  display: flex;
+  padding:0 5%;
+  gap: 5px;
+}
+
+.product-container .button-container button{
+  height:53px;
+  flex:1;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.product-container .button-container button:hover{
+  background-color: black;
   color:white;
-  background-color:black;
-}
-
-.detail-container{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:0 5px;
-}
-
-.product-name{
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  cursor: pointer;
 }
