@@ -11,55 +11,57 @@ from order.models import Order
 from django.urls import reverse_lazy,reverse
 
 import json
+import pickle
+import base64
 
-loginurl = reverse_lazy('login')
-orders = []
+login_url = reverse_lazy('login')
 
-@login_required(login_url=loginurl)
+
+@login_required(login_url=login_url)
 def cart(request):
   user_id = request.user.id
   products = Cart.objects.get(
     user__id=user_id).products.all()
   return render(request,'cart/index.html',{'products':products})
+
  
-@login_required(login_url=loginurl)
+@login_required(login_url=login_url)
 def pre_order(request):
   if request.method=='POST':
     body = request.body.decode('utf-8')
     data = json.loads(body)
-    orders.clear()
-    request.session.pop('products',None)
-    request.session['products'] = data['products']
+    request.session.pop('orders',None)
+    request.session['orders'] = data['products']
     return JsonResponse({
       'message':'success',
       'redirect_url':reverse_lazy('preview-orders')
     })
 
-@login_required(login_url=loginurl)
+
+@login_required(login_url=login_url)
 def preview(request):
-  if request.method=='POST':
-    request.session['redirect_url'] = reverse('order-confirmed')
-    return redirect(reverse('password-confirmation'))
-  products = request.session.get('products',None)
-  order_confirmed = request.session.get('order_confirmed',None)
-  if order_confirmed:
-    request.session.pop('order_confirmed')
-    for order in orders:
-      order.save()
-    orders.clear()
-    return HttpResponse('order placed')
-  elif products:
-    orders.clear()
-    for product_ in products:
-      order = Order(
-        buyer=request.user,
-        product=Product.objects.get(pk=product_['product_id']),
-        amount=product_['amount']
-        )
-      order.compute_total()
-      orders.append(order)
-    return render(request,'cart/preview.html',{'orders':orders})
-   
+  if request.method == 'POST':
+    orders = request.session.get('pickled_orders')
+    for encoded_order in orders:
+      decoded_order = base64.b64decode(encoded_order)
+      unpickled_order = pickle.loads(decoded_order)
+      unpickled_order.save()
+      print(unpickled_order.id)
+    return HttpResponse('orders saved')  
+  request.session['pickled_orders'] = []
+  orders = request.session.get('orders')
+  requested_orders = []
+  for order in orders:
+      product = Product.objects.get(pk=order['product_id'])
+      new_order = Order(buyer=request.user, product=product, amount=order['amount'])
+      new_order.compute_total()
+      requested_orders.append(new_order)
+      pickled = pickle.dumps(new_order)
+      serialized = base64.b64encode(pickled).decode('utf-8')
+      request.session['pickled_orders'].append(serialized)
+  return render(request,'cart/preview.html',{'orders':requested_orders})
+
+
 def order_confirmed(request):
   if request.method=='POST':
     request.session['order_confirmed'] = True
