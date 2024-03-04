@@ -1,39 +1,49 @@
 {% extends 'base.html' %}
 {% load custom_tags %}
-{% block links %}{% endblock %}
+{% load static %}
+{% block links %}
+  <link rel="stylesheet" href="{% static 'products/detail.css' %}">
+{% endblock %}
 {% block content %}
-  <div clas='preview-container'>
-  <img class='product-on-view' src='{{ product.image.url }}'>
-  <h1>{{ product.name }}</h1>
+  <div class='preview-container' id="{{ product.id }}">
+    <img class='product-on-view' src='{{ product.image.url }}'>
+    <h1>{{ product.name }}</h1>
   </div>
   <form>
     {{ form.rating|add_class:'rating' }}
     {{ form.feedback|add_class:'feedback' }}
   </form>
+  <button id="submit-review">submit</button>
 {% endblock %}
 {% block scripts %}
   <script>
   $(document).ready(function(){
-    let rating = $('.rating')
-    let feedback = $('.feedback')
-    let id = $('.product-container').attr('id').val()
-    $.ajax(
-      {
-        url: '{% url "add_review" %}',
-        method: 'POST',
-        data:{
+    $('#submit-review').click(function(){
+      let rating = $('.rating').val()
+      let feedback = $('.feedback').val()
+      let id = $('.preview-container').attr('id')
+
+      if($(rating)&&$(feedback)){
+        $.ajax({
+        url: '{% url "add-review" %}',
+        method:'POST',
+        headers:{
+          'X-CSRFToken':'{{ csrf_token }}'
+        },
+        data:JSON.stringify({
           rating:rating,
           feedback:feedback,
           id:id
-        }
-        success:function(){
-          alert('success')
-        }
+        }),
+        success:function(response){
+          alert(response.message)
+        },
         error:function(){
           alert('error')
         }
+      });
       }
-      )
-  })
+    });
+  });
   </script>
 {% endblock %}

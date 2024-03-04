@@ -2,14 +2,14 @@
 
 <div id='{{ product.id }}' class='product-container product'>
   <div class='img-container'>
-  <img src='{{ product.image.url }}'>
+  <img src='{{ product.image.url }}' onclick="window.location.href='{%url 'product-detail' pk=product.id %}'">
   </div>
-  <h1 class='product-name highlight'>{{ product.name }}</h1>
-  <div class='detail-container'>
+  <h1 class='product-name highlight' onclick="window.location.href='{%url 'product-detail' pk=product.id %}'">{{ product.name }}</h1>
+  <div class='detail-container' onclick="window.location.href='{%url 'product-detail' pk=product.id  %}'">
     <p>${{ product.price }}</p>
     <p>{{ product.sold }} sold</p>
       {% if product.rating_ave %}
-        <p class="'rating">({{ product.reviews.all|length }})⭐{{ product.rating_ave }}</p>
+        <p class="rating">({{ product.reviews.all|length }})⭐{{ product.rating_ave }}</p>
       {% else %}
         <p class='empty rating'>no ratings yet</p>
       {% endif %}
