@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links %}
+<link rel='stylesheet' href='{% static "navbar.css" %}'>
+{% endblock %}
+{% block content %}
+<h1>
+  {{ user.username }}
+</h1>
+{% include 'navbar.html' with current_route='profile' %}
+{% endblock %}
+{% block scripts %}
+<script src='{% static "js/navbar.js" %}'></script>
+{% endblock %}
