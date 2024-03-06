@@ -34,13 +34,15 @@ def RegisterView(request):
     
 @login_required(login_url=reverse_lazy('login'))
 def verify_identity(request):
-  redirect_url = request.session.get('redirect_url',None)
+  redirect_url = request.session.get('requested_url',None)
   if redirect_url:
     form = PasswordVerificationForm()
     if request.method == 'POST':
       form = PasswordVerificationForm(request.POST)
-      user = authenticate(request,username=request.user.username,password=form)
+      user = authenticate(username=request.user.username,password=request.POST.get('password'))
       if user:
+        request.session['is_authenticated'] = True
+        request.session.pop('requested_url')
         return redirect(redirect_url)
     return render(request,'authentication/verification.html',{'form':form,'redirect_url':redirect_url})
   return redirect(reverse('home'))

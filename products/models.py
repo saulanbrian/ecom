@@ -74,3 +74,4 @@ class Review(models.Model):
     default=1
     )
     
+  image = models.ImageField(upload_to='images',null=True)

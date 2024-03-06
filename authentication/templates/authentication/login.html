@@ -1,8 +1,14 @@
 {% load custom_tags %}
-<form method='post'>
+{% load static %}
+{% block links %}
+<link rel='stylesheet' href='{% static "authentication/login.css" %}'>
+{% endblock %}
+{% block content %}
+<form method='post' class='login-form'>
   {% csrf_token %}
   {% for field in form %}
     {{ field|add_class:'input_' }}
   {% endfor %}
   <button>submit</button>
 </form>
+{% endblock %}

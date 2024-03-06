@@ -41,13 +41,7 @@ def pre_order(request):
 @login_required(login_url=login_url)
 def preview(request):
   if request.method == 'POST':
-    orders = request.session.get('pickled_orders')
-    for encoded_order in orders:
-      decoded_order = base64.b64decode(encoded_order)
-      unpickled_order = pickle.loads(decoded_order)
-      unpickled_order.save()
-      print(unpickled_order.id)
-    return HttpResponse('orders saved')  
+    return redirect(reverse('save-orders'))
   request.session['pickled_orders'] = []
   orders = request.session.get('orders')
   requested_orders = []
@@ -61,6 +55,17 @@ def preview(request):
       request.session['pickled_orders'].append(serialized)
   return render(request,'cart/preview.html',{'orders':requested_orders})
 
+
+def save_orders(request):
+  orders = request.session.get('pickled_orders')
+  for encoded_order in orders:
+    decoded_order = base64.b64decode(encoded_order)
+    unpickled_order = pickle.loads(decoded_order)
+    unpickled_order.save()
+  request.session.pop('is_authenticated')
+  return HttpResponse('orders saved')  
+
+save_orders.authentication_required = True
 
 def order_confirmed(request):
   if request.method=='POST':
