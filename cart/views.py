@@ -67,9 +67,3 @@ def save_orders(request):
 
 save_orders.authentication_required = True
 
-def order_confirmed(request):
-  if request.method=='POST':
-    request.session['order_confirmed'] = True
-    request.session.pop('redirect_url')
-    request.session.pop('products')
-    return redirect(reverse('preview-orders'))
