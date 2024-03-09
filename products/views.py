@@ -59,3 +59,4 @@ def add_review(request):
     new_review = Review(product=product,rating=rating,feedback=feedback,user=request.user)
     new_review.save()
     return JsonResponse({'message':'review saved'})
+
