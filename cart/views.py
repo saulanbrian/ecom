@@ -36,6 +36,7 @@ def pre_order(request):
       'message':'success',
       'redirect_url':reverse_lazy('preview-orders')
     })
+  return redirect(reverse('cart'))
 
 
 @login_required(login_url=login_url)
@@ -43,9 +44,10 @@ def preview(request):
   if request.method == 'POST':
     return redirect(reverse('save-orders'))
   request.session['pickled_orders'] = []
-  orders = request.session.get('orders')
-  requested_orders = []
-  for order in orders:
+  orders = request.session.get('orders',None)
+  if orders:
+    requested_orders = []
+    for order in orders:
       product = Product.objects.get(pk=order['product_id'])
       new_order = Order(buyer=request.user, product=product, amount=order['amount'])
       new_order.compute_total()
@@ -53,17 +55,21 @@ def preview(request):
       pickled = pickle.dumps(new_order)
       serialized = base64.b64encode(pickled).decode('utf-8')
       request.session['pickled_orders'].append(serialized)
-  return render(request,'cart/preview.html',{'orders':requested_orders})
+    return render(request,'cart/preview.html',{'orders':requested_orders})
+  return redirect('cart')
 
-
+@login_required(login_url=reverse_lazy('login'))
 def save_orders(request):
-  orders = request.session.get('pickled_orders')
-  for encoded_order in orders:
-    decoded_order = base64.b64decode(encoded_order)
-    unpickled_order = pickle.loads(decoded_order)
-    unpickled_order.save()
-  request.session.pop('is_authenticated')
-  return HttpResponse('orders saved')  
+  orders = request.session.get('pickled_orders',None)
+  if orders:
+    for encoded_order in orders:
+      decoded_order = base64.b64decode(encoded_order)
+      unpickled_order = pickle.loads(decoded_order)
+      unpickled_order.save()
+    request.session.pop('orders')
+    request.session.pop('pickled_orders')
+    return HttpResponse('orders saved')
+  return redirect(reverse('home'))
 
 save_orders.authentication_required = True
-
+save_orders.profile_required = True

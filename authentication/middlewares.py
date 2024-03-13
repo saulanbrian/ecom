@@ -13,7 +13,8 @@ class VerificationMiddleware:
   def process_view(self,request,view_func,view_args,view_kwargs):
     authenticated = request.session.get('is_authenticated',None)
     if hasattr(view_func,'authentication_required') and not authenticated:
-      restricted_path = request.path 
-      print(restricted_path)
+      restricted_path = request.path
       request.session['requested_url'] = restricted_path
       return redirect(reverse('password-confirmation'))
+    elif authenticated:
+      request.session.pop('is_authenticated')

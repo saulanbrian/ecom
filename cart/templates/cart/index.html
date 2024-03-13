@@ -6,8 +6,16 @@
 <link rel='stylesheet' href='{% static "cart/footer.css" %}'>
 {% endblock %}
 {% block content %}
+  <div class='header'>
+    <a href='{% url "products" %}' class='highlight back-button' style="padding-left:10px;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+  <path d="M20 11H7.414l4.293-4.293a1 1 0 0 0-1.414-1.414l-6 6a1 1 0 0 0 0 1.414l6 6a1 1 0 0 0 1.414-1.414L7.414 13H20a1 1 0 0 0 0-2z"/>
+</svg>
+    </a>
+  </div>
   <input type="hidden" value="{{ csrf_token }}" id="csrf-token" >
   {% for product in products %}
+  <div class="cart-container">
   <div id='{{ product.id }}' class='cart-product'>
     <div class='image-container'>
       <img src='{{ product.image.url }}'>
@@ -53,6 +61,7 @@
       </div>
       </div>
     </div>
+  </div>
   </div>
   {% empty %}
   <p class='empty'>

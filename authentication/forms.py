@@ -12,6 +12,13 @@ class RegistrationForm(
         'password1',
         'password2'
         ]
+  
+    def __init__(self,*args,**kwargs):
+      super().__init__(*args,**kwargs)
+      for field in self.fields:
+        self.fields[field].widget.attrs.update({
+          'placeholder':field
+        })
 
 class PasswordVerificationForm(forms.Form):
   password = forms.CharField(label='password')
@@ -19,3 +26,15 @@ class PasswordVerificationForm(forms.Form):
   def __init__(self,*args,**kwargs):
     super().__init__(*args,**kwargs)
     self.fields['password'].widget.attrs['placeholder'] = 'enter your password'
+    
+class CustomAuthenticationForm(AuthenticationForm):
+  class Meta:
+    model = User 
+    fields = ['username','password']
+
+  def __init__(self,*args,**kwargs):
+    super().__init__(*args,**kwargs)
+    for field in self.fields:
+      self.fields[field].widget.attrs.update({
+        'placeholder':field
+      })

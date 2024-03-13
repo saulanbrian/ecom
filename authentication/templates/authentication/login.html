@@ -1,14 +1,14 @@
-{% load custom_tags %}
+{% extends 'authentication/form.html'  %}
 {% load static %}
 {% block links %}
-<link rel='stylesheet' href='{% static "authentication/login.css" %}'>
+  <link rel='stylesheet' href='{% static "authentication/form.css" %}'>
 {% endblock %}
-{% block content %}
-<form method='post' class='login-form'>
-  {% csrf_token %}
-  {% for field in form %}
-    {{ field|add_class:'input_' }}
-  {% endfor %}
-  <button>submit</button>
-</form>
+{% block contents %}
+  <form method='POST'>
+    <h1 class='highlight'>Login to Continue</h1>
+    {% for field in form %}
+      {{ field }}
+    {% endfor %}
+    <button>login</button>
+  </form>
 {% endblock %}

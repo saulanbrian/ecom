@@ -5,10 +5,9 @@ $(document).ready(function (){
   var checkout = 'CHECKOUT'
   //for some reason we can compare the "CHECKOUT" directly to the btnMsg (btnMsg=='CHECKOUT')
 
-  $(button).one('click',function (){
+  $(button).click(function (){
     resetTotal()
     calculateTotal()
-    alert(toCheckOut)
 
     if(btnMsg==checkout){
 
@@ -33,8 +32,6 @@ $(document).ready(function (){
         });
 
       }
-    }else{
-      alert(btnMsg)
     }
   });
   
