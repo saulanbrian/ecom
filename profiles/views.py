@@ -11,10 +11,11 @@ from .forms import ProfileCreationForm
 
 @login_required(login_url=reverse_lazy('login'))
 def profile(request):
-  profile = request.user.profile
-  return render(request,'profiles/index.html',{'profile':profile})
-
-profile.profile_required = True
+  user = request.user.id
+  if Profile.objects.filter(user_id=user).exists():
+    profile = request.user.profile
+    return render(request,'profiles/index.html',{'profile':profile})
+  return render(request,'profiles/noprofile.html')
 
   
 @login_required(login_url=reverse_lazy('login'))

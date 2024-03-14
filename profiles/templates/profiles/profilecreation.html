@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block links %}
-<link rel='stylesheet' href='{% static "navbar.css" %}'>
 {% endblock %}
 {% block content %}
 <form method='POST'>
@@ -12,8 +11,4 @@
   {% endfor %}
   <button>create</button>
 </form>
-{% include 'navbar.html' with current_route='profile' %}
-{% endblock %}
-{% block scripts %}
-<script src='{% static "js/navbar.js" %}'></script>
 {% endblock %}

@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from django.views import View
 
 def LoginView(request):
+  if request.user.is_authenticated:
+    return redirect(reverse('home'))
   form = CustomAuthenticationForm()
   if request.method == 'POST':
     form = CustomAuthenticationForm(request.POST)
@@ -23,6 +25,8 @@ def LoginView(request):
 
     
 def RegisterView(request):
+  if request.user.is_authenticated:
+    return redirect(reverse('home'))
   form = RegistrationForm()
   if request.method == 'POST':
     form = RegistrationForm(request.POST)

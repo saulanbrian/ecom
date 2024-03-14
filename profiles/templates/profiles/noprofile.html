@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block links %}
+  <link rel='stylesheet' href='{% static "navbar.css" %}'>
+{% endblock %}
+{% block content %}
+  <h1>you dont have a profile yet</h1>
+  <a href='{% url "profile-creation" %}'>click here to make one</a>
+  {% include 'navbar.html' with current_route='profile' %}
+{% endblock %}
+{% block scripts %}
+  <script src='{% static "js/navbar.js" %}'></script>
+{% endblock %}

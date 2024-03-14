@@ -6,17 +6,35 @@ form{
   padding:10px;
   gap:5px;
   flex-shrink:1;
-  margin:20%;
+  margin:25%;
+  box-shadow: 5px 5px 3px black;
 }
 
 form input,button{  
   width:80%;
   margin:10px 10%;
   border:2px solid black;
-  border-radius:20px;
+  border-radius:15px;
   height:50px;
-  font-size:25px;
+  font-size:30px;
   text-align:center;
+}
+
+form h1{
+  font-size: 40px;
+  text-align:center;
+}
+
+form button{
+  height:60px;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+
+form button:hover{
+  background-color: black;
+  color:white;
 }
 
 @media(max-height:780px){

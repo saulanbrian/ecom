@@ -1,5 +1,17 @@
-<form method='post'>
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button>signup</button>
-</form>
+{% extends 'base.html' %}
+{% load static %}
+{% block links %}
+  <link rel='stylesheet' href='{% static "authentication/form.css" %}'>
+{% endblock %}
+{% block content %}
+  <form method='POST'>
+    {% csrf_token %}
+    <h1 class='highlight'>Create Account</h1>
+    {% for field in form %}
+      {{ field }}
+    {% endfor %}
+    <button>
+      <h1 class='highlight'>SIGN UP</h1>
+    </button>
+  </form>
+{% endblock %}

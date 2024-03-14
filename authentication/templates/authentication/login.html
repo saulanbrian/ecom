@@ -1,14 +1,17 @@
-{% extends 'authentication/form.html'  %}
+{% extends 'base.html' %}
 {% load static %}
 {% block links %}
   <link rel='stylesheet' href='{% static "authentication/form.css" %}'>
 {% endblock %}
-{% block contents %}
+{% block content %}
   <form method='POST'>
+    {% csrf_token %}
     <h1 class='highlight'>Login to Continue</h1>
     {% for field in form %}
       {{ field }}
     {% endfor %}
-    <button>login</button>
+    <button>
+      <h1 class='highlight'>LOGIN</h1>
+    </button>
   </form>
 {% endblock %}
