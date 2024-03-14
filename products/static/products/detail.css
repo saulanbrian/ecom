@@ -1,4 +1,25 @@
-.feedback{
-    background-color: blue;
-    height:200px;
+.product-on-view .image-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom:2px solid black;
+}
+
+.product-on-view .image-container img{
+  max-height:400px;
+  min-height: 400px;
+}
+
+.shop-products-container{
+  display:flex;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  border-bottom:2px solid black;
+  padding:5px;
+  gap:5px;
+}
+
+.product-on-view .detail-container{
+  border-bottom:2px solid black;
+  padding-left:5px;
 }
