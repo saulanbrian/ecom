@@ -31,9 +31,7 @@ class Product(models.Model):
   def sold(self):
     if self.orders:
       return len([order for order in self.orders.all() if order.received ])
-    else:
-      print('hey')
-  
+
   def save(self,*args,**kwargs):
     super().save(*args,**kwargs)
     reviews = self.reviews.all()
@@ -53,7 +51,7 @@ class Review(models.Model):
     (3, '⭐⭐⭐'),
     (4, '⭐⭐⭐⭐'),
     (5, '⭐⭐⭐⭐⭐'),
-]
+  ]
   
   user = models.ForeignKey(
     User,

@@ -17,8 +17,7 @@ def trigger_product_save(
     
     instance.product.save()
     
-@receiver(
-  post_delete,sender=Review)
+@receiver(post_delete,sender=Review)
 def update_product_rating(
   sender,instance,**kwargs):
     instance.product.save()

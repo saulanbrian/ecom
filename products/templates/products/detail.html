@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="{% static 'products/product.css' %}">
 {% endblock %}
 {% block content %}
-<div class='product-on-view'>
+ <div class='product-on-view'>
   <div id='{{ product.id }}' class='image-container'>
     <img class='product-on-view' src='{{ product.image.url }}'>
   </div>
@@ -24,4 +24,42 @@
       {% endif %}
     {% endfor %}
   </div>
+  
+  <div class='footer'>
+    <button id='add' class='highlight'>add to cart</button>
+    <button id='buy' class='highlight'>buy now</button>
+  </div>
+  
+  <div class='counter' style='z-index:999;'>
+    <div class='content'>
+      
+      <div class='top-container'>
+        <button class='highlight cross-button'>X</button>
+      </div>
+      <div class='middle-container'>
+        <img src='{{ product.image.url }}'>
+        <h1>another shit</h1>
+        <h1>another shit</h1>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block scripts %}
+<script>
+  $(document).ready(function(){
+    
+    var counter = $('.counter')
+    $(counter).hide()
+    
+    $('button#buy').click(function(){
+      $(counter).toggle()
+    });
+    
+    $('.top-container button').click(function(){
+      $(counter).toggle()
+    });
+
+    
+  });
+</script>
 {% endblock %}

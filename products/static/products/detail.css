@@ -6,8 +6,8 @@
 }
 
 .product-on-view .image-container img{
-  max-height:400px;
-  min-height: 400px;
+  max-height:600px;
+  min-height:600px;
 }
 
 .shop-products-container{
@@ -22,4 +22,88 @@
 .product-on-view .detail-container{
   border-bottom:2px solid black;
   padding-left:5px;
+}
+
+.footer{
+  position:fixed;
+  bottom:0px;
+  width:100%;
+  border-top:2px solid black;
+  height:10%;
+  display:flex;
+  justify-content: flex-end;
+  align-items:center;
+  padding-right:30px;
+  margin-right:10px;
+}
+
+.footer button{
+  border-top:2px solid black;
+  height:80%;
+  width:30%;
+  gap:10px;
+  font-size:40px;
+  font-weight:10px;
+}
+
+.footer button:active{
+  background-color:black;
+  color:white;
+}
+
+.footer > *{
+  border:2px solid black;
+  margin:10px;
+}
+
+.counter{
+  display:none;
+  width:100%;
+  height:40%;
+  position:absolute;
+  bottom:0px;
+  border:2px solid black;
+  background-color:white;
+  padding-right:5px;
+}
+
+.counter .content{
+  display:flex;
+  background-color:red;
+  flex-direction:column;
+  height:100%;
+  width:100%;
+}
+
+.top-container{
+  margin-left:5px;
+  display:flex;
+  justify-content:flex-end;
+  padding-right:5px;
+}
+
+.top-container button{
+  margin-top:4px;
+  height:50px;
+  width:50px;
+  font-size:40px;
+  background-color:white;
+  border:1px solid black;
+  border-radius:360px;
+}
+
+.top-container button:active{
+  color:white;
+  background-color:black;
+}
+
+.content .middle-container{
+  display:flex;
+  background-color:green;
+  
+}
+
+.middle-container img{
+  height:150px;
+  width:150px;
 }
