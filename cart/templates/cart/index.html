@@ -18,7 +18,7 @@
   <div class="cart-container">
   <div id='{{ product.id }}' class='cart-product'>
     <div class='image-container'>
-      <img src='{{ product.image.url }}'>
+      <img src='{{ product.image.url }}' onclick='window.location.href="{% url 'product-detail' pk=product.id %}"'>
     </div>
     <div class='product-detail'>
       <h1 class='product-name highlight'>

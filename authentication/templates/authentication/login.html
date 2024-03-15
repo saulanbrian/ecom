@@ -4,14 +4,18 @@
   <link rel='stylesheet' href='{% static "authentication/form.css" %}'>
 {% endblock %}
 {% block content %}
+<div class='main-container'>
   <form method='POST'>
     {% csrf_token %}
     <h1 class='highlight'>Login to Continue</h1>
     {% for field in form %}
       {{ field }}
     {% endfor %}
-    <button>
-      <h1 class='highlight'>LOGIN</h1>
+    <button class='highlight'>LOGIN
     </button>
+    <p>don't have an account?
+    <a href='{% url "register" %}'>signup </a> here.
+    </p>
   </form>
+</div>
 {% endblock %}

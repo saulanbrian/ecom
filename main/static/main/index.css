@@ -1,0 +1,30 @@
+.main-container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height:100%;
+  width:100%;
+}
+
+.main-container h1{
+  font-size:50px;
+  margin-bottom:0;
+}
+
+.main-container button{
+  font-size:25px;
+  background-image: white;
+  border:1px solid black;
+  height:40px;
+  display:flex;
+  align-items:center;
+  border-radius:5px;
+  margin-top:3px;
+  padding:10px;
+}
+
+.main-container button:active{
+  background-color:black ;
+  color:white;
+}

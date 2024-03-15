@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block links %}
+<link rel='stylesheet' href='{% static "profiles/profilecreation.css" %}'>
 {% endblock %}
 {% block content %}
-<form method='POST'>
-  {% csrf_token %}
-  {% for field in form %}
-    {{ field.label }}
-    {{ field }}<br>
-  {% endfor %}
-  <button>create</button>
-</form>
+<div class='form-container'>
+  <form method='POST'>
+    <h1 class='highlight'>
+      CREATE YOUR PROFILE
+    </h1>
+    {% csrf_token %}
+    {% for field in form %}
+      {{ field }}<br>
+    {% endfor %}
+    <button class='highlight'>create</button>
+  </form>
+</div>
 {% endblock %}

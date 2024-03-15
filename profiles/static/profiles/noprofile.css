@@ -1,0 +1,16 @@
+.main-container{
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main-container a{
+  text-decoration: none;
+}
+
+.main-container h1{
+  font-size:30px;
+}
