@@ -11,7 +11,7 @@ $(document).ready(function (){
 
     if(btnMsg==checkout){
 
-      var csrfToken = $('#csrf-token').val()
+      var csrfToken = csrf_token
       
       if( toCheckOut.length>=1 ){
         $.ajax({

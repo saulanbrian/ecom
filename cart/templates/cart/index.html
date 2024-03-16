@@ -6,74 +6,71 @@
 <link rel='stylesheet' href='{% static "cart/footer.css" %}'>
 {% endblock %}
 {% block content %}
+
   <div class='header'>
     <a href='{% url "products" %}' class='highlight back-button' style="padding-left:10px;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
-  <path d="M20 11H7.414l4.293-4.293a1 1 0 0 0-1.414-1.414l-6 6a1 1 0 0 0 0 1.414l6 6a1 1 0 0 0 1.414-1.414L7.414 13H20a1 1 0 0 0 0-2z"/>
-</svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+        <path d="M20 11H7.414l4.293-4.293a1 1 0 0 0-1.414-1.414l-6 6a1 1 0 0 0 0 1.414l6 6a1 1 0 0 0 1.414-1.414L7.414 13H20a1 1 0 0 0 0-2z"/>
+      </svg>
     </a>
   </div>
-  <input type="hidden" value="{{ csrf_token }}" id="csrf-token" >
-  {% for product in products %}
-  <div class="cart-container">
-  <div id='{{ product.id }}' class='cart-product'>
-    <div class='image-container'>
-      <img src='{{ product.image.url }}' onclick='window.location.href="{% url 'product-detail' pk=product.id %}"'>
-    </div>
-    <div class='product-detail'>
-      <h1 class='product-name highlight'>
-        {{ product.name }}
-      </h1>
-      <div class='subdetail'> 
-      <div class='details'>
-        {% if product.rating_ave %}
-        <p>
-        ⭐{{ product.rating_ave }}
-        </p>
-        {% else %}
-        <p class='empty'>no ratings yet</p>
-        {% endif %}
-        <p class='{% if not product.sold %}empty{% endif %}'>
-          {{ product.sold }} sold
-        </p>
-        {% if product.reviews.all %}
-        <p>
-          {{ product.reviews.all|length }} review(s)
-        </p>
-        {% else %}
-        <p class='empty'>
-          no reviews yet
-        </p>
-        {% endif %}
-        <h2 class='product-price highlight'>
-          ${{ product.price }}
-        </h2>
+
+  <div class="main-container">
+
+    {% for product in products %}
+
+      <div class="cart-container">
+        <div id='{{ product.id }}' class='cart-product'>
+          <div class='image-container'>
+            <img src='{{ product.image.url }}' onclick='window.location.href="{% url 'product-detail' pk=product.id %}"'>
+          </div>
+          <div class='product-detail'>
+            <h1 class='product-name highlight'>{{ product.name }}</h1>
+            <div class='subdetail'> 
+              <div class='details'>
+                {% if product.rating_ave %}
+                  <p>⭐{{ product.rating_ave }}</p>
+                {% else %}
+                  <p class='empty'>no ratings yet</p>
+                {% endif %}
+                  <p class='{% if not product.sold %}empty{% endif %}'>{{ product.sold }} sold </p>
+                {% if product.reviews.all %}
+                  <p>{{ product.reviews.all|length }} review(s)</p>
+                {% else %}
+                  <p class='empty'>no reviews yet</p>
+                {% endif %}
+                <h2 class='product-price highlight'>${{ product.price }}</h2>
+              </div>
+            <div class='right-container'>
+            <div class='amount-container'>
+              <button>-</button>
+              <input type='number' min='0' class='amount-counter' value='1'>
+              <button>+</button>
+            </div>
+            <div class='checkbox-container'>
+              <input type='checkbox'>
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class='right-container'>
-       <div class='amount-container'>
-        <button>-</button>
-        <input type='number' min='0' class='amount-counter' value='1'>
-        <button>+</button>
-       </div>
-       <div class='checkbox-container'>
-         <input type='checkbox'>
-       </div>
-      </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  {% empty %}
-  <p class='empty'>
-    no products yet
-  </p>
-  {% endfor %}
-{% include 'cart/footer.html' %}
+
+    {% empty %}
+    <p class='empty'>
+      no products yet
+    </p>
+    {% endfor %}
+  </div>  
+
+  {% include 'cart/footer.html' %}
+
 {% endblock %}
 {% block scripts %}
 <script>
   const orderPreviewUrl = '{% url "pre-order" %}';
   var toCheckOut = [];
+  var csrf_token = '{{ csrf_token }}'
 </script>
 <script src='{% static "cart/js/cart.js" %}'></script>
 <script src='{% static "cart/js/footer.js" %}'></script>

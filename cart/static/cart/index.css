@@ -1,3 +1,99 @@
+/* body{
+  padding: 0;
+}
+
+.header{
+  display:flex;
+  padding:10px;
+  align-items:center;
+  border-bottom:1px solid black;
+  margin-bottom:20px;
+  justify-content: flex-start;
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  top:0px;
+}
+
+.header .back-button{
+  text-decoration: none;
+  font-size:60px;
+  color:black;
+}
+
+.main-container{
+  display: flex;
+  flex-direction: column;
+  gap:3px;
+  background-color: blue;
+  margin-top: 40px;
+  padding: 40px 0;
+  padding-bottom: 150px;
+}
+
+.main-container > * {
+  flex:1;
+  max-height: 300px;
+  overflow: hidden;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+.cart-product{
+  display: flex;
+  flex-shrink: 1;
+  border: 2px solid green;
+  overflow: hidden;
+}
+
+.cart-container{
+  margin:5px;
+}
+
+.image-container{
+  height:100%;
+  width:100%;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:1;
+}
+
+
+.cart-product{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (max-width:720px) {
+
+  .cart-container{
+    margin:10px;
+    max-height: 250px;
+  }
+
+  .image-container > img{
+    height:100%;
+    width:100%;
+  }
+  
+}
+
+@media screen and (min-width:721px) {
+
+  .cart-product{
+    margin:0 15%;
+    flex: 1;
+  }
+
+  .image-container > img{
+    height:300px;
+    width: 300px;
+}  */
+
+
+
 .cart-product{
   display:flex;
   flex-wrap:nowrap;
@@ -13,10 +109,8 @@
 }
 
 .image-container{
-  min-width:250px;
-  min-height:250px;
-  max-height:250px;
-  max-width:250px;
+  height:250px;
+  width:250px;
   overflow:hidden;
   display:flex;
   align-items:center;
@@ -27,8 +121,8 @@
 }
 
 .image-container > img{
-  max-height:280px;
-  max-width:280px;
+  height:280px;
+  width:280px;
 }
 
 .product-name{
@@ -75,7 +169,7 @@
 }
 
 .amount-container *{
-  max-width:50px;
+  width:50px;
   height:50px;
 }
 
@@ -129,16 +223,18 @@ input[type='checkbox']{
 
 
 .cart-container{
+  width: 80%;
   display:flex;
   flex-shrink: 1;
   padding:10px 10%;
 }
 
-@media(min-width:700px){
-  .cart-container > *{
-    flex:0.5;
-  }
+
+.cart-container > *{
+  display:flex;
+  flex-shrink: 1;
 }
+
 
 .header{
   display:flex;
@@ -154,3 +250,20 @@ input[type='checkbox']{
   font-size:60px;
   color:black;
 }
+
+.main-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-shrink: 1;
+} 
+
+@media  screen and (max-height:780px) {
+  .image-container{
+    height:200px;
+  }
+  .image-container img{
+    height:200px;
+  }
+} */
