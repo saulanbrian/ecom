@@ -92,7 +92,7 @@
     width: 300px;
 }  */
 
-
+/* 
 
 .cart-product{
   display:flex;
@@ -131,6 +131,8 @@
 
 .cart-product > * {
   flex:1;
+  display: flex;
+  flex-shrink: 1;
 }
 
 .cart-product > .product-detail{
@@ -260,10 +262,141 @@ input[type='checkbox']{
 } 
 
 @media  screen and (max-height:780px) {
-  .image-container{
-    height:200px;
-  }
-  .image-container img{
-    height:200px;
-  }
+  
+}  */
+
+.header{
+  display:flex;
+  padding:10px;
+  align-items:center;
+  border-bottom:1px solid black;
+  margin-bottom:20px;
+  justify-content: flex-start;
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  top:0px;
+}
+
+.main-container{
+  margin: 100px 0;
+  border: 2px solid blue;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  gap: 5px;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+
+.main-container > .cart-product{
+  max-height: 230px;
+  overflow: hidden;
+  border: 2px solid red;
+}
+
+.cart-container{
+  max-height: 230px;
+  display: flex;
+  border: 2px solid red;
+  flex-shrink: 1;
+}
+
+.cart-product{
+  display: grid;
+  grid-template-columns: 1.3fr 2fr;
+  grid-gap: 5px;
+  margin: 2px;
+  border: 1px solid black;
+}
+
+.cart-product > *{
+  overflow: hidden;
+  border: 2px solid green;
+}
+
+
+.image-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 1;
+  margin: 15%;
+  max-height: 70%;
+  max-width: 70%;
+}
+
+.image-container img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.product-detail{
+  display: flex;
+  flex-shrink: 1;
+  flex-wrap: nowrap;
+  /* display: grid;
+  grid-template-columns: 1.5fr 2fr; */
+}
+
+.product-detail > *{
+  flex: 1;
+}
+
+.product-detail .subdetail{
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  border: 2px solid red;
+  max-height: 100%;
+}
+
+.subdetail {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0;
+  height: 100%;
+  display: flex;
+  padding-bottom: 50px;
+}
+
+
+/* .product-name {
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
 } */
+
+.product-name{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 1;
+  margin: 0;
+}
+
+.subdetail > *{
+  flex: 1;
+}
+
+@media  screen and (min-width:780px) {
+
+  .main-container > *{
+    width: 45%;
+  }
+
+}
+
+
+@media  screen and (max-width:780px) {
+
+  .main-container > *{
+    width: 80%;
+  }
+
+  .cart-container{
+    max-height: 170px;
+  }
+
+}

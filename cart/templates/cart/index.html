@@ -25,9 +25,10 @@
             <img src='{{ product.image.url }}' onclick='window.location.href="{% url 'product-detail' pk=product.id %}"'>
           </div>
           <div class='product-detail'>
-            <h1 class='product-name highlight'>{{ product.name }}</h1>
+            <!-- <h1 class='product-name highlight'>{{ product.name }}</h1> -->
             <div class='subdetail'> 
-              <div class='details'>
+              <div class='product-name'><h1 class='highlight' style="margin: 0;">{{ product.name }}</h1></div>
+              <!-- <div class='details'> -->
                 {% if product.rating_ave %}
                   <p>⭐{{ product.rating_ave }}</p>
                 {% else %}
@@ -39,19 +40,19 @@
                 {% else %}
                   <p class='empty'>no reviews yet</p>
                 {% endif %}
-                <h2 class='product-price highlight'>${{ product.price }}</h2>
-              </div>
+              <h2 class='product-price highlight'>${{ product.price }}</h2>
+              <!-- </div> -->
+            </div>
             <div class='right-container'>
-            <div class='amount-container'>
-              <button>-</button>
-              <input type='number' min='0' class='amount-counter' value='1'>
-              <button>+</button>
-            </div>
-            <div class='checkbox-container'>
-              <input type='checkbox'>
-            </div>
-            </div>
-            </div>
+              <div class='amount-container'>
+                <button>-</button>
+                <input type='number' min='0' class='amount-counter' value='1'>
+                <button>+</button>
+              </div>
+              <div class='checkbox-container'>
+                <input type='checkbox'>
+              </div>
+              </div>
           </div>
         </div>
       </div>
