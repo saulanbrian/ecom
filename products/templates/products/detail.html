@@ -6,16 +6,29 @@
   <link rel="stylesheet" href="{% static 'products/product.css' %}">
 {% endblock %}
 {% block content %}
+  <div class='header'>
+    <a href='{% url "products" %}' class='highlight back-button' style="padding-left:10px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+        <path d="M20 11H7.414l4.293-4.293a1 1 0 0 0-1.414-1.414l-6 6a1 1 0 0 0 0 1.414l6 6a1 1 0 0 0 1.414-1.414L7.414 13H20a1 1 0 0 0 0-2z"/>
+      </svg>
+    </a>
+  </div>
+
  <div class='product-on-view'>
   <div id='{{ product.id }}' class='image-container'>
     <img class='product-on-view' src='{{ product.image.url }}'>
   </div>
   <div class='detail-container'>
-  <h1 class='highlight'>{{ product.name }}</h1>
+    <div class="details">
+      <h1 class='highlight'>{{ product.name }}</h1>
+      <h1 class='highlight'>${{ product.price }}</h1>
+      <p class="{% if product.sold == 0 %}empty{% endif %}">({{ product.sold }})sold</p>
+      <p class="{% if product.rating_ave == 0 %}empty{% endif %}">{% if product.rating_ave is not None %}{{ product.rating_ave }}{% else %}0{% endif %}(⭐)</p>
+    </div>
   </div>
 </div>
   {% if product.shop_origin.products.all.count >= 2 %}
-    <h1 class='highlight'>
+    <h1 class='highlight' style="margin-top:50px; border-top:2px solid black;"> 
       FROM THE SAME SHOP
     </h1>
     <div class='shop-products-container'>

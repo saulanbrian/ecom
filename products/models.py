@@ -5,24 +5,15 @@ from django.contrib.auth.models import User
 
 # Create your models here
 class Product(models.Model):
-  shop_origin = models.ForeignKey(Shop,
-  on_delete=models.CASCADE,
-  related_name='products')
+  shop_origin = models.ForeignKey(Shop,on_delete=models.CASCADE,related_name='products')
   
-  name = models.CharField(
-    max_length=30)
+  name = models.CharField(max_length=30)
   
   price = models.IntegerField()
   
-  image = models.ImageField(
-    upload_to='images',
-    null=True)
+  image = models.ImageField(upload_to='images',null=True)
   
-  rating_ave = models.DecimalField(
-    null=True,
-    max_digits=2,
-    decimal_places=1,
-    editable=False)
+  rating_ave = models.DecimalField(null=True,max_digits=2,decimal_places=1,editable=False)
   
   
   def __str__(self):
@@ -31,6 +22,7 @@ class Product(models.Model):
   def sold(self):
     if self.orders:
       return len([order for order in self.orders.all() if order.received ])
+    return 0
 
   def save(self,*args,**kwargs):
     super().save(*args,**kwargs)
