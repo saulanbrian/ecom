@@ -62,7 +62,7 @@
       </div>
 
       <div class="bottom-container" style="margin-top: 5px !important; border-top: 2px solid black; background-color: white; overflow: hidden;">
-        <h1 class="highlight price" style="padding-top:15px !important; margin-top: 0;">BUY NOW</h1>
+        <h1 class="highlight price" style="padding-top:15px !important; margin-top: 0;">$0</h1>
       </div>
 
     </div>
@@ -107,6 +107,37 @@
       var current = parseInt($('.counter-container input').val())
       $('.counter-container input').val(current+=1)
       calculate()
+    });
+
+    $('.bottom-container h1').click(function (){
+      var amount = parseInt($(this).text().split('$')[1])
+      
+
+      if (amount > 0){
+
+        $.ajax({
+          url:'{% url "pre-order" %}',
+          method:'POST',
+          headers:{
+            'X-CSRFToken':'{{ csrf_token }}',
+            'Content-Type':'application/json'
+          },
+          data:JSON.stringify({
+            'products':[{
+              product_id:'{{ product.id }}',
+              amount:$('.counter-container input').val() //we want to turn this to an array or list because that's how the view expected it to be
+            },]
+          }),
+          success:function(response){
+            window.location.href = response.redirect_url
+          },
+          error:function(){
+            alert('error')
+          }
+
+        });
+      }
+
     });
 
   });

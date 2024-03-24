@@ -29,10 +29,10 @@ class Order(models.Model):
   date_received = models.DateTimeField(null=True)
   
   def confirm_receive(self):
-    self.data_received = timezone.now()
+    self.date_received = timezone.now()
     self.received = True
   
   def compute_total(self):
-    price = self.product.price
-    total = price * self.amount
+    price = int(self.product.price)
+    total = price * int(self.amount)
     self.price = total  

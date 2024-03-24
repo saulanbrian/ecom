@@ -55,6 +55,8 @@ def preview(request):
       pickled = pickle.dumps(new_order)
       serialized = base64.b64encode(pickled).decode('utf-8')
       request.session['pickled_orders'].append(serialized)
+    for order in requested_orders:
+      print(order.price)
     return render(request,'cart/preview.html',{'orders':requested_orders})
   return redirect('cart')
 
