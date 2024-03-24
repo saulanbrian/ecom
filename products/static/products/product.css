@@ -1,8 +1,9 @@
 .product-container{
-  height:440px;
+  height:390px;
   width:280px;
   border:2px solid black;
-  border-radius:10px;
+  border-radius:5px;
+  cursor: pointer;
 }
 
 .product-container .img-container{
