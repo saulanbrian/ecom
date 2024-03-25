@@ -28,6 +28,8 @@ class Order(models.Model):
   
   date_received = models.DateTimeField(null=True)
   
+  is_cancelled = models.BooleanField(default=False)
+  
   def confirm_receive(self):
     self.date_received = timezone.now()
     self.received = True
@@ -36,3 +38,7 @@ class Order(models.Model):
     price = int(self.product.price)
     total = price * int(self.amount)
     self.price = total  
+  
+  def cancel(self):
+    if not self.received:
+      self.is_cancelled = True

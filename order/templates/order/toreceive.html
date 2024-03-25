@@ -1,31 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}{% endblock %}
-{% block links %}
-<link rel='stylesheet' href='{% static "navbar.css" %}'>
-{% endblock %}
+{% block links %}{% endblock %}
 {% block content %}
+  <h1>to receive</h1>
   {% for order in orders %}
   <div id='{{ order.id }}' class='order'>
-    <h1>{{ order.product.name }}</h1>
-    {% if order.received %}
-      <p>already received</p>
-    {% else %}
-    <button>cofirm receive</button>
-    {% endif %}
+  <p>{{ order.product.name }}</p>
+  <button class='cancel'>cancel</button>
+  <button class='confirm'>confirm receive</button>
   </div>
   {% endfor %}
-  {% include 'navbar.html' with current_route='orders' %}
 {% endblock %}
 {% block scripts %}
-<script src='{% static "js/navbar.js" %}'></script>
 <script>
   $(document).ready(function(){
-    var btn = $('div.order button');
-    $(btn).click(function(){
+    
+    $('.cancel').click(function(){
       var order = $(this).closest('.order')
+      
       $.ajax({
-        url:'{% url "receive-order" %}',
+        url:'{% url "cancel-order" %}',
         method:'POST',
         headers:{
           'X-CSRFToken':'{{ csrf_token }}',
@@ -34,15 +29,23 @@
         data:JSON.stringify({
           'order_id':$(order).attr('id')
         }),
-        success:function(response){
-          $(order).find('button').toggle()
-          $(order).append('<p>order received</p>')
+        success:function(){
+          $(order).toggle()
         },
         error:function(){
           alert('error')
         }
       });
+      
     });
+    
+    $('.confirm').click(function(){
+      
+      var order = $(this).closest('.order')
+      $(order).toggle()
+      
+    });
+    
   });
 </script>
 {% endblock %}

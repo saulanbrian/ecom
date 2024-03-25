@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block links %}{% endblock %}
+{% block content %}
+<h1>cancelled</h1>
+  {% for order in orders %}
+  <p>{{ order.product.name }}</p>
+  {% endfor %}
+{% endblock %}
