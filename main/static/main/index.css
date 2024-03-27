@@ -28,3 +28,16 @@
   background-color:black ;
   color:white;
 }
+
+@media screen and (max-width:480px){
+  .main-container > p,button{
+    flex-shrink:1;
+    height:15px !important;
+    font-size:10px !important;
+  }
+  
+  .main-container h1{
+    height:30px;
+    font-size:25px;
+  }
+}

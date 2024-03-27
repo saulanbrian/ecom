@@ -439,7 +439,20 @@ input[type='checkbox']{
     width: 40px; */
     border: 1px solid black;
   }
+  
+  .header{
+    max-height:10%;
+    height:20px !important;
+  }
+  
+  .header *{
+    height:25px !important;
+    width:25px !important;
+  }
 
+  .main-container{
+    margin-top:35px;
+  }
 }
 
 

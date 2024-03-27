@@ -6,7 +6,7 @@
   position:fixed;
   bottom:0px;
   background-color:white;
-  border-top:2px solid black;
+  border-top:1px solid black;
 }
 
 .nav-bar > *{
@@ -31,8 +31,13 @@
   font-size:30px;
 }
 
-@media(max-width:1000px){
+@media(max-width:480px){
   .nav-bar p{
-    font-size: 20px;
+    font-size: 15px;
+  }
+  
+  .nav-bar{
+    height:60px;
+    max-height:70px;
   }
 }

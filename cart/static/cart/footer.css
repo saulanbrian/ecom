@@ -92,8 +92,9 @@ footer button h1{
 @media  screen and (max-width:480px) {
   
   footer{
+    height:70px;
     font-size: x-small !important;
-    padding-bottom: 0px;
+    padding-bottom: 2px;
   }
 
   .price-container .total-price{
