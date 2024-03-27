@@ -89,10 +89,15 @@ footer button h1{
   }
 }
 
-@media  screen and (max-width:600px) {
+@media  screen and (max-width:480px) {
   
-  h1.btn-msg{
-    font-size: medium;
+  footer{
+    font-size: x-small !important;
+    padding-bottom: 0px;
+  }
+
+  .price-container .total-price{
+    font-size: 40px !important;
   }
 
 }
