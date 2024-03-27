@@ -12,7 +12,7 @@ import json
 @login_required(login_url=reverse_lazy('login'))
 def orders(request):
   orders = request.user.orders.all()
-  return render(request,'order/all.html',{'orders':orders})
+  return render(request,'order/index.html',{'orders':orders})
   
 def receive_order(request):
   if request.method == 'POST':

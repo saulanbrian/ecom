@@ -5,17 +5,12 @@
 <link rel='stylesheet' href='{% static "navbar.css" %}'>
 {% endblock %}
 {% block content %}
-  {% for order in orders %}
-  <div id='{{ order.id }}' class='order'>
-    <h1>{{ order.product.name }}</h1>
-    {% if order.received %}
-      <p>already received</p>
-    {% else %}
-    <button>cofirm receive</button>
-    {% endif %}
-  </div>
-  {% endfor %}
-  {% include 'navbar.html' with current_route='orders' %}
+
+  <a href="{% url 'to-receive' %}">to receive</a>
+  <a href="{% url 'received-orders' %}">received</a>
+  <a href="{% url 'cancelled-orders' %}">cancelled</a> 
+
+{% include 'navbar.html' with current_route='orders' %}
 {% endblock %}
 {% block scripts %}
 <script src='{% static "js/navbar.js" %}'></script>
